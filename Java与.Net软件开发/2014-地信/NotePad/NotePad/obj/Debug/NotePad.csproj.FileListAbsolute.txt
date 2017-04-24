@@ -1,0 +1,12 @@
+D:\C++\NotePad\NotePad\bin\Debug\NotePad.exe.config
+D:\C++\NotePad\NotePad\bin\Debug\NotePad.exe
+D:\C++\NotePad\NotePad\bin\Debug\NotePad.pdb
+D:\C++\NotePad\NotePad\obj\Debug\NotePad.NotePad.resources
+D:\C++\NotePad\NotePad\obj\Debug\NotePad.Properties.Resources.resources
+D:\C++\NotePad\NotePad\obj\Debug\NotePad.csproj.GenerateResource.Cache
+D:\C++\NotePad\NotePad\obj\Debug\NotePad.exe
+D:\C++\NotePad\NotePad\obj\Debug\NotePad.pdb
+D:\C++\NotePad\NotePad\obj\Debug\NotePad.FindForm.resources
+D:\C++\NotePad\NotePad\obj\Debug\NotePad.GoForm.resources
+D:\C++\NotePad\NotePad\obj\Debug\NotePad.ReplaceForm.resources
+D:\C++\NotePad\NotePad\obj\Debug\NotePad.AboutForm.resources

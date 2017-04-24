@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans>  
+    <bean id="ExampleA" class="Chairyfish.ExampleA"/>  
+    <bean id="ExampleB" class="Chairyfish.ExampleB"/>  
+</beans>  

@@ -1,0 +1,9 @@
+C:\Users\chairyfish\Desktop\Java作业\Animal\Animal\bin\Debug\Animal.exe.config
+C:\Users\chairyfish\Desktop\Java作业\Animal\Animal\bin\Debug\Animal.exe
+C:\Users\chairyfish\Desktop\Java作业\Animal\Animal\bin\Debug\Animal.pdb
+C:\Users\chairyfish\Desktop\Java作业\Animal\Animal\obj\Debug\Animal.csprojResolveAssemblyReference.cache
+C:\Users\chairyfish\Desktop\Java作业\Animal\Animal\obj\Debug\Animal.exe
+C:\Users\chairyfish\Desktop\Java作业\Animal\Animal\obj\Debug\Animal.pdb
+C:\Users\chairyfish\Desktop\Java作业\3.Animal\Animal\bin\Debug\Animal.exe.config
+C:\Users\chairyfish\Desktop\Java作业\3.Animal\Animal\obj\Debug\Animal.exe
+C:\Users\chairyfish\Desktop\Java作业\3.Animal\Animal\obj\Debug\Animal.pdb

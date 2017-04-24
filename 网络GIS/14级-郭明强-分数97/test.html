@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8"/>
+  <head>
+    <title>211大学查询</title>
+    <link rel="stylesheet" href="https://openlayers.org/en/v3.19.0/css/ol.css" type="text/css"> 
+    <script src="https://openlayers.org/en/v3.19.0/build/ol.js"></script>
+    <script src="bmob-min.js"></script>
+    <style>
+	.map {
+        height: 610px;
+        width: 100%;
+		position:absolute;
+      }
+  	a{
+  	font-size:15px;
+  	color:#999999;
+  	}
+	
+	.markerImage{
+    width:200px;
+  }
+  .markerTitle{
+    font-size: :20px;
+    font-weight: bold;
+  }
+  .markerUrl{
+    color: #ff0000;
+    font-size: 16px;
+  }
+  .markerText{
+    font-size: 14px;
+  }
+  .markerDistrict{
+    color: #666;
+    font-size: 14px;
+  }
+	
+  	.form-wrapper {
+  	position:absolute;
+  	width: 600px;
+  	padding: 10px;
+  	margin-top:50px;
+  	margin-left: 330px;
+  	background: #55999999;
+  	border-radius: 10px;
+  	box-shadow: 0 1px 1px rgba（0,0,0,0.1） inset, 0 1px 0 rgba（255,255,255,0.2）;
+  	}
+  	
+  	.querytext {
+  	width: 480px;
+  	height: 20px;
+  	padding: 10px 5px;
+  	font: bold 15px;
+  	border: 0;
+  	background: #f0f0f0;
+  	border-radius: 3px 0 0 3px;
+  	}
+  	.querybutton{
+  	overflow: visible;
+  	position: relative;
+  	float: right;
+  	border: 0;
+  	padding: 0;
+  	cursor: pointer;
+  	height: 40px;
+  	width: 110px;
+  	font: bold 15px/40px ;
+  	color: #fff;
+  	text-transform: uppercase;
+  	background: #229999;
+  	border-radius: 0 3px 3px 0;
+  	text-shadow: 0 -1px 0 rgba（0, 0 ,0, 0.3）;
+  	}
+  	.mouse-position{
+      position: absolute;
+      margin-top: 610px;
+      font-size: 15px;
+      color: #666;
+    }
+
+	
+	
+	
+	
+	
+	
+      .ol-popup {
+        position: absolute;
+        background-color: white;
+        -webkit-filter: drop-shadow(0 1px 4px rgba(0,0,0,0.2));
+        filter: drop-shadow(0 1px 4px rgba(0,0,0,0.2));
+        padding: 15px;
+        border-radius: 10px;
+        border: 1px solid #cccccc;
+        bottom: 12px;
+        left: -50px;
+        min-width: 280px;
+      }
+      .ol-popup:after, .ol-popup:before {
+        top: 100%;
+        border: solid transparent;
+        content: " ";
+        height: 0;
+        width: 0;
+        position: absolute;
+        pointer-events: none;
+      }
+      .ol-popup:after {
+        border-top-color: white;
+        border-width: 10px;
+        left: 48px;
+        margin-left: -10px;
+      }
+      .ol-popup:before {
+        border-top-color: #cccccc;
+        border-width: 11px;
+        left: 48px;
+        margin-left: -11px;
+      }
+      .ol-popup-closer {
+        text-decoration: none;
+        position: absolute;
+        top: 2px;
+        right: 8px;
+      }
+      .ol-popup-closer:after {
+        content: "✖";
+      }
+    </style>
+  </head>
+  <body>
+    <div id="map" class="map"></div>
+ <div id="mouse-position" class="mouse-position"></div>
+<!-- 
+    <div id="label" style="display；none;">
+      <div id="marker" class="marker" title="Marker">
+        <a class="address" id="address" target="_blank" href="www.openlayers.org/">标注点</a>
+      </div>
+    </div> -->
+
+    <div id="popup" class="ol-popup">
+      <a href="#" id="popup-closer" class="ol-popup-closer"></a>
+      <div id="popup-content"></div>
+    </div>
+	
+
+    <form class="cf form-wrapper">
+    <input class="querytext" type="text" id="sname" placeholder="输入你要查找的大学...">
+    <input class="querybutton" type="button" id="addSymbol" value="查找">
+    </form>
+
+	
+	
+	
+    <script>
+	     Bmob.initialize("91565566af12973a02592ebc8334055f", "d39aa7f9b0ca356c9ca0dfbb4887c3c2");
+	
+      var mousePositionControl = new ol.control.MousePosition({
+        coordinateFormat: ol.coordinate.createStringXY(4),
+        projection: 'EPSG:4326',
+        // comment the following two lines to have the mouse position
+        // be placed within the map.
+        className: 'custom-mouse-position',
+        target: document.getElementById('mouse-position'),
+        undefinedHTML: '&nbsp;'
+      });
+
+
+/*********************************************popup****************************************************/
+      /**
+       * Elements that make up the popup.
+       */
+      var container = document.getElementById('popup');
+      var content = document.getElementById('popup-content');
+      var closer = document.getElementById('popup-closer');
+
+
+      /**
+       * Create an overlay to anchor the popup to the map.
+       */
+      var overlay = new ol.Overlay(/** @type {olx.OverlayOptions} */ ({
+        element: container,
+        autoPan: true,
+        autoPanAnimation: {
+          duration: 250
+        }
+      }));
+
+
+      /**
+       * Add a click handler to hide the popup.
+       * @return {boolean} Don't follow the href.
+       */
+      closer.onclick = function() {
+        overlay.setPosition(undefined);
+        closer.blur();
+        return false;
+      };
+
+
+      /**
+       * Create the map.
+       */
+      var map = new ol.Map({
+        controls: ol.control.defaults({
+          attributionOptions: /** @type {olx.control.AttributionOptions} */ ({
+            collapsible: false
+          })
+        }).extend([mousePositionControl]),
+        layers: [
+          new ol.layer.Tile({
+            source: new ol.source.OSM()
+          })
+        ],
+        overlays: [overlay],
+        target: 'map',
+        view: new ol.View({
+          center: [12950000, 4860000],
+          zoom: 4
+        })
+      });
+
+
+      /**
+       * Add a click handler to the map to render the popup.
+       */
+      map.on('singleclick', function(evt) {
+        var coordinate = evt.coordinate;
+        var feature=map.forEachFeatureAtPixel(evt.pixel,function(feature,layer){return feature;});
+        if(feature){
+        //  alert(feature.get('name'));
+          var featureInfo={
+                  geometry:new ol.geom.Point(feature.geometry),
+                  name:feature.get('name'),
+                  time:feature.get('time'),
+                  distric:feature.get('distric'),
+                  state:feature.get('state'),
+                  url:feature.get('url')
+          }
+          content.innerHTML='';
+          addFeatureInfo(featureInfo);
+
+        // content.innerHTML = '<p>清华大学</p><code>' + '<a target="blank" href=feature.url>$feature.url</a>' +
+        //     '</code>';
+
+        overlay.setPosition(coordinate);
+        }
+      });
+
+
+      
+	  
+/*******************************************************************************************/
+var a=new Array();
+    var b=new Array();
+    var c=new Array();
+    var time=new Array();
+    var jianjie=new Array();
+    var Url=new Array();
+    var Dst=new Array();
+    var d=new ol.Feature();
+
+
+addSymbol.onclick=function(){
+
+    var schoolName=document.getElementById("sname").value;
+
+     var vsource = new ol.source.Vector({ //矢量源  
+          features:[] //将前面的标注放进要素里  
+      }); 
+
+    var SCHOOL = Bmob.Object.extend("SCHOOL");
+    var query = new Bmob.Query(SCHOOL);
+    query.equalTo("Sname", schoolName); 
+    // 查询所有数据
+    query.find({
+        success: function(results) {
+        //    alert("共查询到 " + results.length + " 条记录");
+            // 循环处理查询到的数据
+
+            if(results.length ==0){
+              alert("查无结果");
+            }else{
+            for (var i = 0; i < results.length; i++) {
+            var object = results[i];
+            a[i]=object.get('Sname');
+            b[i]=object.get('X');
+            c[i]=object.get('Y');
+            time[i]=object.get('Settime');
+            jianjie[i]=object.get('State');
+            Url[i]=object.get('Surl');
+            Dst[i]=object.get('Sdistrict');
+            d=createfeature(a[i],b[i],c[i],time[i],Dst[i],jianjie[i],Url[i]);
+            d.setStyle(createLabelStyle(d));
+            vsource.addFeatures([d]);
+            }
+            var vector = new ol.layer.Vector({ //创建矢量图层  
+             source:vsource  //放入矢量源  
+            });  
+            map.addLayer(vector); //地图添加  
+          }
+        },
+        error: function(error) {
+            alert("查询失败: " + error.code + " " + error.message);
+        }
+
+    });
+}
+
+    function createLabelStyle(feature) {
+    return new ol.style.Style({
+
+    image:new ol.style.Icon({ //定义图案  
+            anchor:[0.5,1],  //位置  
+            src:'biaozhu.png', //图案  
+            scale:0.6,
+            opacity:0.75
+        }),  
+        text:new ol.style.Text({ //文字格式  
+            textAlign:'center',  
+            textBaseline:'middle',  
+            font:'normal 14px 微软雅黑',  
+            text:feature.get('name'),  
+            fill:new ol.style.Fill({color:'#eee'}),  
+            stroke:new ol.style.Stroke({color:'#599',width:2})  
+        })  
+
+      });
+   }
+		
+function createfeature (Sname,Lont,Lat,Time,Dstrict,State,Url) {
+   var school=ol.proj.fromLonLat([Lont,Lat]);
+    return new ol.Feature({
+        geometry:new ol.geom.Point(school),
+        name:Sname,
+        time:Time,
+        distric:Dstrict,
+        state:State,
+        url:Url
+  });
+}
+
+function addFeatureInfo(info){
+  var elementP=document.createElement('p');
+  elementP.className="markerTitle";
+  setInnerText(elementP,info.name);
+  content.appendChild(elementP);
+  var elementImg=document.createElement('img');
+  elementImg.className="markerImage";
+  elementImg.src="学校图片/"+info.name+".jpg";
+  content.appendChild(elementImg);
+  var elementBr=document.createElement('br');
+  content.appendChild(elementBr);
+  var elementP1=document.createElement('p');
+  elementP1.className="markerDistrict";
+  setInnerText(elementP1,info.distric);
+  content.appendChild(elementP1);
+  var elementA=document.createElement('a');
+  elementA.className="markerUrl";
+  elementA.href=info.url;
+  setInnerText(elementA,"百科链接");
+  content.appendChild(elementA);
+  var elementDiv=document.createElement('div');
+  elementDiv.className="markerText";
+  setInnerText(elementDiv,info.state);
+  content.appendChild(elementDiv); 
+}
+
+
+function setInnerText(element,text){
+  if(typeof element.textContent=="String"){
+    element.textContent=text;
+  }else{
+    element.innerText=text;
+  }
+}
+    </script>
+  </body>
+</html>

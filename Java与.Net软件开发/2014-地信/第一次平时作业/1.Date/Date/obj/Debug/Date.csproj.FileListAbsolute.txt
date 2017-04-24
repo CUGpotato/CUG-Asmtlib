@@ -1,0 +1,14 @@
+F:\My code\Date\Date\bin\Debug\Date.exe.config
+F:\My code\Date\Date\bin\Debug\Date.exe
+F:\My code\Date\Date\bin\Debug\Date.pdb
+F:\My code\Date\Date\obj\Debug\Date.csprojResolveAssemblyReference.cache
+F:\My code\Date\Date\obj\Debug\Date.exe
+F:\My code\Date\Date\obj\Debug\Date.pdb
+C:\Users\chairyfish\Desktop\Java作业\Date\Date\bin\Debug\Date.exe.config
+C:\Users\chairyfish\Desktop\Java作业\Date\Date\obj\Debug\Date.exe
+C:\Users\chairyfish\Desktop\Java作业\Date\Date\obj\Debug\Date.pdb
+C:\Users\chairyfish\Desktop\Java作业\Date\Date\bin\Debug\Date.exe
+C:\Users\chairyfish\Desktop\Java作业\Date\Date\bin\Debug\Date.pdb
+C:\Users\chairyfish\Desktop\Java作业\1.Date\Date\bin\Debug\Date.exe.config
+C:\Users\chairyfish\Desktop\Java作业\1.Date\Date\obj\Debug\Date.exe
+C:\Users\chairyfish\Desktop\Java作业\1.Date\Date\obj\Debug\Date.pdb

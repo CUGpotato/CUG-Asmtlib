@@ -1,0 +1,11 @@
+D:\C++\WeatherQuery\WeatherQuery\bin\Debug\WeatherQuery.exe.config
+D:\C++\WeatherQuery\WeatherQuery\bin\Debug\WeatherQuery.exe
+D:\C++\WeatherQuery\WeatherQuery\bin\Debug\WeatherQuery.pdb
+D:\C++\WeatherQuery\WeatherQuery\obj\Debug\WeatherQuery.Form1.resources
+D:\C++\WeatherQuery\WeatherQuery\obj\Debug\WeatherQuery.Properties.Resources.resources
+D:\C++\WeatherQuery\WeatherQuery\obj\Debug\WeatherQuery.csproj.GenerateResource.Cache
+D:\C++\WeatherQuery\WeatherQuery\obj\Debug\WeatherQuery.exe
+D:\C++\WeatherQuery\WeatherQuery\obj\Debug\WeatherQuery.pdb
+D:\C++\20141001143-董欣怡-第一次Java实习\WeatherQuery\WeatherQuery\bin\Debug\WeatherQuery.exe.config
+D:\C++\20141001143-董欣怡-第一次Java实习\WeatherQuery\WeatherQuery\obj\Debug\WeatherQuery.exe
+D:\C++\20141001143-董欣怡-第一次Java实习\WeatherQuery\WeatherQuery\obj\Debug\WeatherQuery.pdb

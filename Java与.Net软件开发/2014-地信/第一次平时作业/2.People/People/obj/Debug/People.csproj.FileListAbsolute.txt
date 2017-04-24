@@ -1,0 +1,9 @@
+C:\Users\chairyfish\Desktop\Java作业\People\People\bin\Debug\People.exe.config
+C:\Users\chairyfish\Desktop\Java作业\People\People\bin\Debug\People.exe
+C:\Users\chairyfish\Desktop\Java作业\People\People\bin\Debug\People.pdb
+C:\Users\chairyfish\Desktop\Java作业\People\People\obj\Debug\People.csprojResolveAssemblyReference.cache
+C:\Users\chairyfish\Desktop\Java作业\People\People\obj\Debug\People.exe
+C:\Users\chairyfish\Desktop\Java作业\People\People\obj\Debug\People.pdb
+C:\Users\chairyfish\Desktop\Java作业\2.People\People\bin\Debug\People.exe.config
+C:\Users\chairyfish\Desktop\Java作业\2.People\People\obj\Debug\People.exe
+C:\Users\chairyfish\Desktop\Java作业\2.People\People\obj\Debug\People.pdb
